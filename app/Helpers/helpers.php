@@ -4,6 +4,19 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\HigherOrderTapProxy;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 
+if (! function_exists('public_path')) {
+    /**
+     * Get the path to the public folder.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function public_path($path = '')
+    {
+        return rtrim(app()->basePath('public'.$path), '/');
+    }
+}
+
 if (! function_exists('mix')) {
     /**
      * Get the path to a versioned Mix file.
@@ -137,5 +150,19 @@ if (! function_exists('tap')) {
         $callback($value);
 
         return $value;
+    }
+}
+
+if (! function_exists('bcrypt')) {
+    /**
+     * Hash the given value.
+     *
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
+     */
+    function bcrypt($value, $options = [])
+    {
+        return app('hash')->make($value, $options);
     }
 }

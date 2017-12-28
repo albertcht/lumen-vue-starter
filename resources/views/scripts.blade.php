@@ -2,7 +2,8 @@
 @php
 $config = [
     'appName' => config('app.name'),
-    'locale' => $locale = app()->getLocale(),
+    // FIX: app()->getLocale()
+    'locale' => $locale = 'en',
     'locales' => config('app.locales'),
     'translations' => json_decode(file_get_contents(resource_path("lang/{$locale}.json")), true),
     'githubAuth' => config('services.github.client_id'),
@@ -27,7 +28,8 @@ $polyfills = [
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
 
 {{-- Load the application scripts --}}
-@if (app()->isLocal())
+{{-- FIX: app()->isLocal() --}}
+@if (env('APP_DEBUG'))
   <script src="{{ mix('js/app.js') }}"></script>
 @else
   <script src="{{ mix('js/manifest.js') }}"></script>

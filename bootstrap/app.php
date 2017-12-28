@@ -27,6 +27,8 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->configure('app');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -92,17 +94,17 @@ $app->register(App\Providers\AppServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->router->group([
+    'prefix' => 'api',
+    'namespace' => 'App\Http\Controllers\API',
+], function ($router) {
+    require __DIR__.'/../routes/api.php';
+});
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
-});
-
-$app->router->group([
-    'namespace' => 'App\Http\Controllers\API',
-], function ($router) {
-    require __DIR__.'/../routes/api.php';
 });
 
 return $app;
