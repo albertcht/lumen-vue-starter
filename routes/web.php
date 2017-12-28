@@ -14,3 +14,20 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('oauth/{driver}', [
+    'as' => 'oauth', 'uses' => 'Auth\OAuthController@redirectToProvider'
+]);
+
+$router->get('oauth/{driver}/callback', [
+    'as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback'
+]);
+
+$router->get('{path}', function () {
+    return view('index');
+    // where('path', '(.*)')
+});
+
+$router->get('password/reset/{token}', ['as' => 'password.reset', function () {
+    return view('index');
+}]);
