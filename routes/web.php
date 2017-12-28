@@ -11,6 +11,10 @@
 |
 */
 
+$router->get('/', function () {
+    return view('index');
+});
+
 $router->get('oauth/{driver}', [
     'as' => 'oauth', 'uses' => 'Auth\OAuthController@redirectToProvider'
 ]);
