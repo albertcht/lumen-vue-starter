@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint": "eslint resources/assets/js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.0.0",
+    "@fortawesome/fontawesome-free-brands": "^5.0.0",
+    "@fortawesome/fontawesome-free-regular": "^5.0.0",
+    "@fortawesome/fontawesome-free-solid": "^5.0.0",
+    "@fortawesome/vue-fontawesome": "^0.0.21",
+    "axios": "^0.16.2",
+    "bootstrap": "^4.0.0-beta.2",
+    "jquery": "^3.2.1",
+    "js-cookie": "^2.1.4",
+    "popper.js": "^1.12.5",
+    "sweetalert2": "^6.10.3",
+    "vform": "^0.8.1",
+    "vue": "^2.5.2",
+    "vue-i18n": "^7.3.1",
+    "vue-meta": "^1.2.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.0",
+    "vuex-router-sync": "^5.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-vue-libs": "^1.2.1",
+    "laravel-mix": "^1.7.0",
+    "vue-template-compiler": "^2.5.2",
+    "webpack-bundle-analyzer": "^2.9.0"
+  }
+}
