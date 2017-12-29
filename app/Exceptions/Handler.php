@@ -3,11 +3,14 @@
 namespace App\Exceptions;
 
 use Exception;
+use BadMethodCallException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class Handler extends ExceptionHandler
 {
@@ -40,11 +43,43 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+        // Default response of 400
+        $isFatal = $e instanceof FatalThrowableError;
+        $isBadMethod = $e instanceof BadMethodCallException;
+        $status = 400;
+
+        if ($isFatal || $isBadMethod) {
+            $status = 500;
+        } elseif (method_exists($e, 'getStatusCode')) {
+            $status = $e->getStatusCode();
+        }
+        $message = $e->getMessage();
+
+        if ($e instanceof ValidationException) {
+            $status = $e->status;
+            $message = $e->errors();
+        }
+
+        $response = [
+            'error' => [
+                'type' => get_class($e),
+                'code' => $status,
+                'message' => $message
+            ],
+        ];
+
+        // Add debug trace
+        if (env('APP_DEBUG') && !app()->runningUnitTests()) {
+            $fe = FlattenException::create($e);
+            $response['error']['trace'] = $fe->getTrace();
+        }
+
+        // Return a JSON response with the response array and status code
+        return response()->json($response, $status);
     }
 }
