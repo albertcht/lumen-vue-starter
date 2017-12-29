@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\API\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Create a new controller instance.
      *
@@ -17,46 +16,20 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest')->except('logout');
+        //
     }
 
-    /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
+    public function login(Request $request)
     {
-        $token = $this->guard()->attempt($this->credentials($request));
-
-        if ($token) {
-            $this->guard()->setToken($token);
-
-            return true;
+        if ($token = Auth::attempt($request->only(['email', 'password']))) {
+            return response()->json([
+                'token' => $token
+            ]);
         }
 
-        return false;
-    }
-
-    /**
-     * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    protected function sendLoginResponse(Request $request)
-    {
-        $this->clearLoginAttempts($request);
-
-        $token = (string) $this->guard()->getToken();
-        $expiration = $this->guard()->getPayload()->get('exp');
-
-        return [
-            'token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => $expiration - time(),
-        ];
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
     }
 
     /**
@@ -67,6 +40,10 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        Auth::logout();
+
+        return response()->json([
+            'success' => 'true'
+        ]);
     }
 }
