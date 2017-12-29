@@ -11,7 +11,7 @@
 |
 */
 
-$router->group([], function () use ($router) {
+$router->group(['middleware' => 'laravel.jwt'], function () use ($router) {
     $router->get('user', function () {
         return auth()->user();
     });

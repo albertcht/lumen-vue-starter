@@ -8,7 +8,10 @@
         "php": ">=7.0",
         "laravel/lumen-framework": "5.5.*",
         "vlucas/phpdotenv": "~2.2",
-        "laravel/socialite": "^3.0"
+        "laravel/socialite": "^3.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "unisharp/laravel-jwt": "^0.2.0",
+        "mlntn/lumen-artisan-serve": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

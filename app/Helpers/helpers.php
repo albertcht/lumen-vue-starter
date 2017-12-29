@@ -13,7 +13,20 @@ if (! function_exists('public_path')) {
      */
     function public_path($path = '')
     {
-        return rtrim(app()->basePath('public'.$path), '/');
+        return rtrim(app()->basePath('public'.$path), DIRECTORY_SEPARATOR);
+    }
+}
+
+if (! function_exists('config_path')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function config_path($path = '')
+    {
+        return rtrim(app()->basePath('config'.$path), DIRECTORY_SEPARATOR);
     }
 }
 
