@@ -11,7 +11,9 @@
         "laravel/socialite": "^3.0",
         "guzzlehttp/guzzle": "^6.3",
         "unisharp/laravel-jwt": "^0.2.0",
-        "mlntn/lumen-artisan-serve": "^1.2"
+        "mlntn/lumen-artisan-serve": "^1.2",
+        "vluzrmos/tinker": "dev-master",
+        "anik/form-request": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
