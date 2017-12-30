@@ -48,6 +48,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        // Format Validation Response
+        if ($e instanceof ValidationException) {
+            return response()->json([
+                'errors' => $e->errors()
+            ], $e->status);
+        }
+
         // Default response of 400
         $isFatal = $e instanceof FatalThrowableError;
         $isBadMethod = $e instanceof BadMethodCallException;
@@ -59,11 +66,6 @@ class Handler extends ExceptionHandler
             $status = $e->getStatusCode();
         }
         $message = $e->getMessage();
-
-        if ($e instanceof ValidationException) {
-            $status = $e->status;
-            $message = $e->errors();
-        }
 
         $response = [
             'error' => [
