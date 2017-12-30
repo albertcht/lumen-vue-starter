@@ -44,7 +44,7 @@ class LoginController extends Controller
         Auth::logout();
 
         return response()->json([
-            'success' => 'true'
+            'success' => true
         ]);
     }
 }

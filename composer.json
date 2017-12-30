@@ -10,15 +10,16 @@
         "vlucas/phpdotenv": "~2.2",
         "laravel/socialite": "^3.0",
         "guzzlehttp/guzzle": "^6.3",
-        "unisharp/laravel-jwt": "^0.2.0",
+        "unisharp/laravel-jwt": "^0.2.2",
         "mlntn/lumen-artisan-serve": "^1.2",
         "vluzrmos/tinker": "dev-master",
-        "albertcht/lumen-form-request": "^2.0"
+        "albertcht/lumen-form-request": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0",
+        "codedungeon/phpunit-result-printer": "^0.4.4"
     },
     "autoload": {
         "psr-4": {

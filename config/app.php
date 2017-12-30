@@ -82,7 +82,7 @@ return [
 
     'locales' => [
         'en' => 'EN',
-        'zh-CN' => '中文'
+        'zh-TW' => '中文'
     ],
 
     /*

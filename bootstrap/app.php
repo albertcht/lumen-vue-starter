@@ -29,6 +29,7 @@ $app->withEloquent();
 
 $app->configure('app');
 $app->configure('auth');
+$app->configure('database');
 $app->configure('services');
 
 /*
@@ -62,6 +63,10 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+
+$app->middleware([
+   App\Http\Middleware\SetLocale::class
+]);
 
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
