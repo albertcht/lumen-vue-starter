@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "01669085d83b53f1b13467713afb31b4",
-    "content-hash": "d6a1ba1094fcaec2b58098abc55afc45",
+    "hash": "678c392a1f71da487fa3dc171022a6d9",
+    "content-hash": "8cf8a2a2a0efa4c2dff649798c0fc8ae",
     "packages": [
         {
             "name": "albertcht/lumen-form-request",
@@ -3455,6 +3455,53 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "albertcht/lumen-testing",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/albertcht/lumen-testing.git",
+                "reference": "4bd9d53a2a4b56c394152af3c54f2ecc1d214b81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/albertcht/lumen-testing/zipball/4bd9d53a2a4b56c394152af3c54f2ecc1d214b81",
+                "reference": "4bd9d53a2a4b56c394152af3c54f2ecc1d214b81",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/lumen-framework": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
+                "php": "^5.6.4 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlbertCht\\Lumen\\Testing\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Chen",
+                    "email": "albert.cht@gmail.com"
+                }
+            ],
+            "description": "Testing Suite For Lumen like Laravel does.",
+            "keywords": [
+                "laravel",
+                "lumen",
+                "phpunit",
+                "test",
+                "testing"
+            ],
+            "time": "2017-12-30 15:58:59"
+        },
         {
             "name": "codedungeon/phpunit-result-printer",
             "version": "0.4.4",

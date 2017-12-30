@@ -4,9 +4,12 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\BaseTestCase;
+use AlbertCht\Lumen\Testing\Concerns\RefreshDatabase;
 
 class LoginTest extends BaseTestCase
 {
+    use RefreshDatabase;
+
     /** @var \App\User */
     protected $user;
 
@@ -23,21 +26,21 @@ class LoginTest extends BaseTestCase
         $this->post('/api/login', [
             'email' => 'foo',
             'password' => 'bar'
-        ])->seeStatusCode(422)
-            ->seeJsonStructure(['errors']);
+        ])->assertStatus(422)
+            ->assertJsonStructure(['errors']);
 
         // wrong password
         $this->post('/api/login', [
             'email' => $this->user->email,
             'password' => 'bar',
-        ])->seeStatusCode(422)
-            ->seeJsonStructure(['errors']);
+        ])->assertStatus(422)
+            ->assertJsonStructure(['errors']);
 
         $this->post('/api/login', [
             'email' => $this->user->email,
             'password' => 'secret',
-        ])->seeStatusCode(200)
-            ->seeJsonStructure(['token']);
+        ])->assertSuccessful()
+            ->assertJsonStructure(['token']);
     }
 
     /** @test */
@@ -45,8 +48,8 @@ class LoginTest extends BaseTestCase
     {
         $this->actingAs($this->user)
             ->get('/api/user')
-            ->seeStatusCode(200)
-            ->seeJsonStructure(['id', 'name', 'email']);
+            ->assertSuccessful()
+            ->assertJsonStructure(['id', 'name', 'email']);
     }
 
     /** @test */
@@ -54,10 +57,10 @@ class LoginTest extends BaseTestCase
     {
         $this->actingAs($this->user)
             ->post('/api/logout')
-            ->seeStatusCode(200)
-            ->seeJsonEquals(['success' => true]);
+            ->assertSuccessful()
+            ->assertJson(['success' => true]);
 
         $this->get('/api/user')
-            ->assertResponseStatus(401);
+            ->assertStatus(401);
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\HigherOrderTapProxy;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
+use Symfony\Component\HttpFoundation\Cookie;
+use Carbon\Carbon;
 
 if (! function_exists('public_path')) {
     /**
@@ -177,5 +179,30 @@ if (! function_exists('bcrypt')) {
     function bcrypt($value, $options = [])
     {
         return app('hash')->make($value, $options);
+    }
+}
+
+if (! function_exists('cookie')) {
+    /**
+     * Create a new cookie instance.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @param  int  $minutes
+     * @param  string  $path
+     * @param  string  $domain
+     * @param  bool  $secure
+     * @param  bool  $httpOnly
+     * @param  bool  $raw
+     * @param  string|null  $sameSite
+     * @return \Illuminate\Cookie\CookieJar|\Symfony\Component\HttpFoundation\Cookie
+     */
+    function cookie($name = null, $value = null, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true, $raw = false, $sameSite = null)
+    {
+        list($path, $domain, $secure, $sameSite) = [$path, $domain, $secure, $sameSite];
+
+        $time = ($minutes == 0) ? 0 : Carbon::now()->addSeconds($minutes * 60)->getTimestamp();
+
+        return new Cookie($name, $value, $time, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
     }
 }

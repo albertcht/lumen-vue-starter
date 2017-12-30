@@ -92,6 +92,7 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Unisharp\JWT\JWTServiceProvider::class);
 $app->register(Vluzrmos\Tinker\TinkerServiceProvider::class);
 $app->register(AlbertCht\Form\FormRequestServiceProvider::class);
+$app->register(Laravel\Socialite\SocialiteServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

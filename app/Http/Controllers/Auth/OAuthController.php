@@ -6,12 +6,9 @@ use App\User;
 use App\OAuthProvider;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class OAuthController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Create a new controller instance.
      *
@@ -60,11 +57,11 @@ class OAuthController extends Controller
             $user = $this->createUser($driver, $user);
         }
 
-        $token = $this->guard()->login($user);
+        $token = auth()->login($user);
+        $cookie = (string) cookie('token', $token, 0, null, null, false, false);
 
-        return redirect('/home')->withCookie(
-            cookie('token', $token, 0, null, null, false, false)
-        );
+        return redirect('/home')
+            ->header('Set-Cookie', $cookie);
     }
 
     /**

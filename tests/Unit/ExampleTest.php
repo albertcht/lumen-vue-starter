@@ -3,8 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\BaseTestCase;
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class ExampleTest extends BaseTestCase
 {
