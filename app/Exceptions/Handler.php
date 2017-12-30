@@ -11,7 +11,6 @@ use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
-use Anik\Form\ValidationException as FormRequestException;
 
 class Handler extends ExceptionHandler
 {
@@ -25,7 +24,6 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
-        FormRequestException::class,
     ];
 
     /**
@@ -65,10 +63,6 @@ class Handler extends ExceptionHandler
         if ($e instanceof ValidationException) {
             $status = $e->status;
             $message = $e->errors();
-        }
-        if ($e instanceof FormRequestException) {
-            $status = 422;
-            $message = $e->getResponse();
         }
 
         $response = [

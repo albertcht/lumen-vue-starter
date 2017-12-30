@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Anik\Form\FormRequest;
+use AlbertCht\Form\FormRequest;
 
 class LoginRequest extends FormRequest
 {

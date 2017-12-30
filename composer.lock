@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "631151766f05384cb06430b30f779277",
-    "content-hash": "811d1d7d73054ad250886cf3a035af6e",
+    "hash": "89a109bf9cc800f3a5ac31145101c9cc",
+    "content-hash": "65882e276d5ec02f01992c700e935557",
     "packages": [
         {
-            "name": "anik/form-request",
-            "version": "v2.0",
+            "name": "albertcht/lumen-form-request",
+            "version": "v2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ssi-anik/form-request.git",
-                "reference": "1ac4fb7754ceaaf11dc962802a1b1abbe4b81dbf"
+                "url": "https://github.com/albertcht/lumen-form-request.git",
+                "reference": "751cecac0321bcb3f2a0addccd40b1254b81b63c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ssi-anik/form-request/zipball/1ac4fb7754ceaaf11dc962802a1b1abbe4b81dbf",
-                "reference": "1ac4fb7754ceaaf11dc962802a1b1abbe4b81dbf",
+                "url": "https://api.github.com/repos/albertcht/lumen-form-request/zipball/751cecac0321bcb3f2a0addccd40b1254b81b63c",
+                "reference": "751cecac0321bcb3f2a0addccd40b1254b81b63c",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Anik\\Form\\": "src/"
+                    "AlbertCht\\Form\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -40,8 +40,8 @@
             ],
             "authors": [
                 {
-                    "name": "Syed Sirajul Islam Anik",
-                    "email": "sirajul.islam.anik@gmail.com"
+                    "name": "Albert Chen",
+                    "email": "albert.cht@gmail.com"
                 }
             ],
             "description": "Form request is a package for Lumen that lets developer validate form requests like Laravel does.",
@@ -50,7 +50,7 @@
                 "lumen",
                 "validation"
             ],
-            "time": "2017-08-27 19:35:28"
+            "time": "2017-12-30 06:28:14"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
