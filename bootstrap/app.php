@@ -89,8 +89,8 @@ $app->register(Laravel\Socialite\SocialiteServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
 $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
