@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "678c392a1f71da487fa3dc171022a6d9",
-    "content-hash": "8cf8a2a2a0efa4c2dff649798c0fc8ae",
+    "hash": "139751480450fc64875241089bfd87e2",
+    "content-hash": "727073485fd31ed995c89ee87811c04d",
     "packages": [
         {
             "name": "albertcht/lumen-form-request",
@@ -3457,23 +3457,24 @@
     "packages-dev": [
         {
             "name": "albertcht/lumen-testing",
-            "version": "v0.2",
+            "version": "v0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/albertcht/lumen-testing.git",
-                "reference": "4bd9d53a2a4b56c394152af3c54f2ecc1d214b81"
+                "reference": "ddbcae48b4a2872f6a1c2b0aabcfc69b94d561f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/albertcht/lumen-testing/zipball/4bd9d53a2a4b56c394152af3c54f2ecc1d214b81",
-                "reference": "4bd9d53a2a4b56c394152af3c54f2ecc1d214b81",
+                "url": "https://api.github.com/repos/albertcht/lumen-testing/zipball/ddbcae48b4a2872f6a1c2b0aabcfc69b94d561f4",
+                "reference": "ddbcae48b4a2872f6a1c2b0aabcfc69b94d561f4",
                 "shasum": ""
             },
             "require": {
-                "laravel/lumen-framework": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
-                "php": "^5.6.4 || ^7.0"
+                "laravel/lumen-framework": "5.3.*|5.4.*|5.5.*",
+                "php": "^7.0"
             },
             "require-dev": {
+                "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^6.1"
             },
             "type": "library",
@@ -3500,7 +3501,7 @@
                 "test",
                 "testing"
             ],
-            "time": "2017-12-30 15:58:59"
+            "time": "2017-12-31 04:39:21"
         },
         {
             "name": "codedungeon/phpunit-result-printer",
