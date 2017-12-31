@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['prefix' => 'oauth', ], function () use ($router) {
+$router->group(['prefix' => 'oauth'], function () use ($router) {
     $router->get('{driver}', ['as' => 'oauth', 'uses' => 'Auth\OAuthController@redirectToProvider'
     ]);
     $router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
