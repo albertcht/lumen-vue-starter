@@ -36,11 +36,15 @@ class LoginTest extends BaseTestCase
         ])->assertStatus(422)
             ->assertJsonStructure(['errors']);
 
+        $this->assertGuest();
+
         $this->post('/api/login', [
             'email' => $this->user->email,
             'password' => 'secret',
         ])->assertSuccessful()
             ->assertJsonStructure(['token']);
+
+        $this->assertAuthenticated();
     }
 
     /** @test */
@@ -50,6 +54,8 @@ class LoginTest extends BaseTestCase
             ->get('/api/user')
             ->assertSuccessful()
             ->assertJsonStructure(['id', 'name', 'email']);
+
+        $this->assertAuthenticated();
     }
 
     /** @test */
@@ -59,6 +65,8 @@ class LoginTest extends BaseTestCase
             ->post('/api/logout')
             ->assertSuccessful()
             ->assertJson(['success' => true]);
+
+        $this->assertGuest();
 
         $this->get('/api/user')
             ->assertStatus(401);

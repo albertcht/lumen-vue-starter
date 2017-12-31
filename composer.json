@@ -13,7 +13,8 @@
         "unisharp/laravel-jwt": "^0.2.2",
         "mlntn/lumen-artisan-serve": "^1.2",
         "vluzrmos/tinker": "dev-master",
-        "albertcht/lumen-form-request": "^2.1"
+        "albertcht/lumen-form-request": "^2.1",
+        "albertcht/lumen-helpers": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

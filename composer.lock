@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "139751480450fc64875241089bfd87e2",
-    "content-hash": "727073485fd31ed995c89ee87811c04d",
+    "hash": "4bab15c95799038e948d58590b202f57",
+    "content-hash": "812e06d9c59f2086c2dbb58cdc32736e",
     "packages": [
         {
             "name": "albertcht/lumen-form-request",
@@ -51,6 +51,55 @@
                 "validation"
             ],
             "time": "2017-12-30 06:28:14"
+        },
+        {
+            "name": "albertcht/lumen-helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/albertcht/lumen-helpers.git",
+                "reference": "fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/albertcht/lumen-helpers/zipball/fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3",
+                "reference": "fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/lumen-framework": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlbertCht\\Lumen\\Helpers\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Chen",
+                    "email": "albert.cht@gmail.com"
+                }
+            ],
+            "description": "To support Laravel 's unsupported features in Lumen.",
+            "keywords": [
+                "heplers",
+                "laravel",
+                "lumen"
+            ],
+            "time": "2017-12-31 05:39:21"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -5290,7 +5339,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "vluzrmos/tinker": 20
+        "vluzrmos/tinker": 20,
+        "albertcht/lumen-helpers": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

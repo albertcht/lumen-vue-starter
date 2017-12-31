@@ -1,10 +1,17 @@
 <?php
 
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\HigherOrderTapProxy;
-use Illuminate\Contracts\Auth\Factory as AuthFactory;
-use Symfony\Component\HttpFoundation\Cookie;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Factory as AuthFactory;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+use Laravel\Lumen\Application;
+use Laravel\Lumen\Routing\UrlGenerator;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Symfony\Component\HttpFoundation\Cookie;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Contracts\Auth\Access\Gate;
 
 if (! function_exists('public_path')) {
     /**
@@ -148,26 +155,6 @@ if (! function_exists('abort_unless')) {
     }
 }
 
-if (! function_exists('tap')) {
-    /**
-     * Call the given Closure with the given value then return the value.
-     *
-     * @param  mixed  $value
-     * @param  callable|null  $callback
-     * @return mixed
-     */
-    function tap($value, $callback = null)
-    {
-        if (is_null($callback)) {
-            return new HigherOrderTapProxy($value);
-        }
-
-        $callback($value);
-
-        return $value;
-    }
-}
-
 if (! function_exists('bcrypt')) {
     /**
      * Hash the given value.
@@ -204,5 +191,239 @@ if (! function_exists('cookie')) {
         $time = ($minutes == 0) ? 0 : Carbon::now()->addSeconds($minutes * 60)->getTimestamp();
 
         return new Cookie($name, $value, $time, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
+    }
+}
+
+if (!function_exists('policy')) {
+    /**
+     * Get a policy instance for a given class.
+     *
+     * @param object|string $class
+     *
+     * @return mixed
+     *
+     * @throws \InvalidArgumentException
+     */
+    function policy($class)
+    {
+        return app(Gate::class)->getPolicyFor($class);
+    }
+}
+
+if (!function_exists('report')) {
+    /**
+     * Report an exception.
+     *
+     * @param  \Exception $exception
+     *
+     * @return void
+     */
+    function report($exception)
+    {
+        if ($exception instanceof Throwable &&
+            !$exception instanceof Exception) {
+            $exception = new FatalThrowableError($exception);
+        }
+        app(ExceptionHandler::class)->report($exception);
+    }
+}
+
+if (!function_exists('action')) {
+    /**
+     * Generate the URL to a controller action.
+     *
+     * @param string $name
+     * @param array $parameters
+     * @param bool $absolute
+     *
+     * @return string
+     */
+    function action($name, $parameters = [], $absolute = true)
+    {
+        /** @var Application $app */
+        $app = app();
+        $matches = [];
+        if (preg_match('/Lumen \(([0-9\.]+)\)/', $app->version(), $matches)) {
+            $version = floatval(trim($matches[1]));
+            if (5.5 <= $version) {
+                $routes = app('router')->getRoutes();
+            } else {
+                $routes = $app->getRoutes();
+            }
+        } else {
+            $routes = $app->getRoutes();
+        }
+        foreach ($routes as $route) {
+            $uri = $route['uri'];
+            $action = $route['action'];
+            if (isset($action['uses'])) {
+                if ($action['uses'] === $name) {
+                    $uri = preg_replace_callback('/\{(.*?)(:.*?)?(\{[0-9,]+\})?\}/', function ($m) use (&$parameters) {
+                        return isset($parameters[$m[1]]) ? array_pull($parameters, $m[1]) : $m[0];
+                    }, $uri);
+                    $uri = with(new UrlGenerator($app))->to($uri, []);
+                    if (!$absolute) {
+                        $root = $app->make('request')->root();
+                        if (starts_with($uri, $root)) {
+                            $uri = Str::substr($uri, Str::length($root));
+                            if (empty($uri)) {
+                                $uri = '/';
+                            }
+                        }
+                    }
+                    if (!empty($parameters)) {
+                        $uri .= '?' . http_build_query($parameters);
+                    }
+                    return $uri;
+                }
+            }
+        }
+        throw new InvalidArgumentException("Action {$name} not defined.");
+    }
+}
+
+if (!function_exists('app_with')) {
+    /**
+     * Get the available container instance.
+     *
+     * @param string $abstract
+     * @param array $parameters
+     *
+     * @return mixed|Application
+     */
+    function app_with($abstract = null, array $parameters = [])
+    {
+        /** @var Application $app */
+        $app = Application::getInstance();
+        if (is_null($abstract)) {
+            return $app;
+        }
+        if (method_exists($app, 'makeWith')) {
+            return empty($parameters)
+                ? $app->make($abstract)
+                : $app->makeWith($abstract, $parameters);
+        } else {
+            return $app->make($abstract, $parameters);
+        }
+    }
+}
+
+if (!function_exists('asset')) {
+    /**
+     * Generate an asset path for the application.
+     *
+     * @param string $path
+     * @param bool $secure
+     *
+     * @return string
+     */
+    function asset($path, $secure = null)
+    {
+        return (new UrlGenerator(app()))->to($path, null, $secure);
+    }
+}
+
+if (!function_exists('back')) {
+    /**
+     * Create a new redirect response to the previous location.
+     *
+     * @param int $status
+     * @param array $headers
+     * @param mixed $fallback
+     *
+     * @return RedirectResponse
+     */
+    function back($status = 302, $headers = [], $fallback = false)
+    {
+        return redirect()->back($status, $headers, $fallback);
+    }
+}
+
+if (!function_exists('cache')) {
+    /**
+     * Get / set the specified cache value.
+     *
+     * If an array is passed, we'll assume you want to put to the cache.
+     *
+     * @param dynamic key|key,default|data,expiration|null
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
+    function cache()
+    {
+        $arguments = func_get_args();
+        if (empty($arguments)) {
+            return app('cache');
+        }
+        if (is_string($arguments[0])) {
+            return app('cache')->get($arguments[0], isset($arguments[1]) ? $arguments[1] : null);
+        }
+        if (!is_array($arguments[0])) {
+            throw new Exception(
+                'When setting a value in the cache, you must pass an array of key / value pairs.'
+            );
+        }
+        if (!isset($arguments[1])) {
+            throw new Exception(
+                'You must specify an expiration time when setting a value in the cache.'
+            );
+        }
+        return app('cache')->put(key($arguments[0]), reset($arguments[0]), $arguments[1]);
+    }
+}
+
+if (!function_exists('logger')) {
+    /**
+     * Log a debug message to the logs.
+     *
+     * @param null $message
+     * @param array $context
+     *
+     * @return Log|null
+     */
+    function logger($message = null, array $context = [])
+    {
+        if (is_null($message)) {
+            return app('log');
+        }
+        return app('log')->debug($message, $context);
+    }
+}
+
+if (!function_exists('method_field')) {
+    /**
+     * Generate a form field to spoof the HTTP verb used by forms.
+     *
+     * @param $method
+     *
+     * @return HtmlString
+     */
+    function method_field($method)
+    {
+        return new HtmlString('<input type="hidden" name="_method" value="' . $method . '" />');
+    }
+}
+
+if (!function_exists('validator')) {
+    /**
+     * Create a new Validator instance.
+     *
+     * @param  array $data
+     * @param  array $rules
+     * @param  array $messages
+     * @param  array $customAttributes
+     *
+     * @return Validator|ValidationFactory
+     */
+    function validator(array $data = [], array $rules = [], array $messages = [], array $customAttributes = [])
+    {
+        /** @var ValidationFactory $factory */
+        $factory = app(ValidationFactory::class);
+        if (func_num_args() === 0) {
+            return $factory;
+        }
+        return $factory->make($data, $rules, $messages, $customAttributes);
     }
 }
