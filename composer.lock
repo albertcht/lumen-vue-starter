@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c94eb03a304283216d8f20dd180c498f",
-    "content-hash": "5bae43662c8473799db3e5c30f1b5fa7",
+    "hash": "ea9a6f90df2621ea9c6d3392b2ec2720",
+    "content-hash": "06c2b5e303b4db3bbb81577241818492",
     "packages": [
         {
             "name": "albertcht/lumen-form-request",
-            "version": "v2.1",
+            "version": "v2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/albertcht/lumen-form-request.git",
-                "reference": "751cecac0321bcb3f2a0addccd40b1254b81b63c"
+                "reference": "3f6e593d4e38b4a18f2617e87fc98b7dbe27dd9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/albertcht/lumen-form-request/zipball/751cecac0321bcb3f2a0addccd40b1254b81b63c",
-                "reference": "751cecac0321bcb3f2a0addccd40b1254b81b63c",
+                "url": "https://api.github.com/repos/albertcht/lumen-form-request/zipball/3f6e593d4e38b4a18f2617e87fc98b7dbe27dd9c",
+                "reference": "3f6e593d4e38b4a18f2617e87fc98b7dbe27dd9c",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "lumen",
                 "validation"
             ],
-            "time": "2017-12-30 06:28:14"
+            "time": "2017-12-31 16:55:24"
         },
         {
             "name": "albertcht/lumen-helpers",
@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/albertcht/lumen-helpers.git",
-                "reference": "fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3"
+                "reference": "b870096cd968b462ad6bd4f8ccd4a578307e19eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/albertcht/lumen-helpers/zipball/fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3",
-                "reference": "fc86c89f5f4dd3da3fe5b1c4b6e17ea7ca54e7d3",
+                "url": "https://api.github.com/repos/albertcht/lumen-helpers/zipball/b870096cd968b462ad6bd4f8ccd4a578307e19eb",
+                "reference": "b870096cd968b462ad6bd4f8ccd4a578307e19eb",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "laravel",
                 "lumen"
             ],
-            "time": "2017-12-31 05:39:21"
+            "time": "2017-12-31 06:13:48"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
