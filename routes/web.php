@@ -11,22 +11,12 @@
 |
 */
 
-$router->get('/', function () {
-    return view('index');
+$router->group(['prefix' => 'oauth', ], function () use ($router) {
+    $router->get('{driver}', ['as' => 'oauth', 'uses' => 'Auth\OAuthController@redirectToProvider'
+    ]);
+    $router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
 });
 
-$router->get('oauth/{driver}', [
-    'as' => 'oauth', 'uses' => 'Auth\OAuthController@redirectToProvider'
-]);
-
-$router->get('oauth/{driver}/callback', [
-    'as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback'
-]);
-
-$router->get('password/reset/{token}', ['as' => 'password.reset', function () {
-    return view('index');
-}]);
-
-$router->get('{path}', function () {
+$router->get('{path:.*}', function () {
     return view('index');
 });

@@ -23,8 +23,6 @@ $router->group(['middleware' => 'laravel.jwt'], function () use ($router) {
 $router->group([], function () use ($router) {
     $router->post('register', ['uses' => 'Auth\RegisterController@store']);
     $router->post('login', ['uses' => 'Auth\LoginController@login']);
-    $router->post('password/email', ['uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
-    $router->post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
 });
 
 $router->group(['prefix' => 'password'], function () use ($router) {
