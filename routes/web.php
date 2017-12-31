@@ -17,6 +17,12 @@ $router->group(['prefix' => 'oauth'], function () use ($router) {
     $router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
 });
 
+$router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
+
 $router->get('{path:.*}', function () {
     return view('index');
 });
+
+$router->get('password/reset/{token}', ['as' => 'password.reset', function () {
+    return view('index');
+}]);

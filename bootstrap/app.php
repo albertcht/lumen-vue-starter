@@ -54,6 +54,12 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton('mailer', function ($app) {
+    return $app->loadComponent('mail', 'Illuminate\Mail\MailServiceProvider', 'mailer');
+});
+
+$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
