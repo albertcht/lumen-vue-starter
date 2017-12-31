@@ -1,8 +1,9 @@
-# Laravel Vue Starter 
+# Lumen Vue Starter 
 
 ![php-badge](https://img.shields.io/packagist/php-v/albertcht/lumen-vue-starter.svg)
 [![packagist-badge](https://img.shields.io/packagist/v/albertcht/lumen-vue-starter.svg)](https://packagist.org/packages/albertcht/lumen-vue-starter)
 [![Total Downloads](https://poser.pugx.org/albertcht/lumen-vue-starter/downloads)](https://packagist.org/packages/albertcht/lumen-vue-starter)
+[![travis-badge](https://travis-ci.org/albertcht/lumen-vue-starter.svg?branch=master)](https://travis-ci.org/albertcht/lumen-vue-starter)
 
 > A Lumen-Vue SPA starter project template.
 
