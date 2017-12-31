@@ -34,7 +34,7 @@
 
 ## Usage
 
-#### Development
+### Development
 
 ```bash
 # build and watch
@@ -44,7 +44,7 @@ yarn watch
 yarn hot
 ```
 
-#### Production
+### Production
 
 ```bash
 yarn production
@@ -52,3 +52,7 @@ yarn production
 # or this
 yarn build
 ```
+
+## Reference
+
+This is a porting version from [laravel-vue-spa](https://github.com/cretueusebiu/laravel-vue-spa)
