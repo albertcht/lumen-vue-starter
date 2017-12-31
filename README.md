@@ -1,4 +1,4 @@
-# Laravel Vue Starter 
+# Lumen Vue Starter 
 
 ![php-badge](https://img.shields.io/packagist/php-v/albertcht/lumen-vue-starter.svg)
 [![packagist-badge](https://img.shields.io/packagist/v/albertcht/lumen-vue-starter.svg)](https://packagist.org/packages/albertcht/lumen-vue-starter)
