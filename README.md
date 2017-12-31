@@ -17,6 +17,7 @@
 - Testing in Laravel style
 - Tinker command
 - Serve command
+- Support Form Request Validation
 - Vue + VueRouter + Vuex + VueI18n
 - Pages with custom layouts 
 - Login, register and password reset
@@ -34,7 +35,7 @@
 
 ## Usage
 
-#### Development
+### Development
 
 ```bash
 # build and watch
@@ -44,7 +45,7 @@ yarn watch
 yarn hot
 ```
 
-#### Production
+### Production
 
 ```bash
 yarn production
@@ -52,3 +53,7 @@ yarn production
 # or this
 yarn build
 ```
+
+## Reference
+
+This is a porting version from [laravel-vue-spa](https://github.com/cretueusebiu/laravel-vue-spa)
