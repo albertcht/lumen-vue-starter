@@ -1,7 +1,7 @@
 {
     "name": "albertcht/lumen-vue-starter",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "description": "A Lumen-Vue SPA starter project template.",
+    "keywords": ["vue", "laravel", "lumen", "starter", "template"],
     "license": "MIT",
     "type": "project",
     "require": {
