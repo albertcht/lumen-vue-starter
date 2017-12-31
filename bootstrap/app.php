@@ -31,6 +31,7 @@ $app->configure('app');
 $app->configure('auth');
 $app->configure('database');
 $app->configure('services');
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------
@@ -68,14 +69,6 @@ $app->middleware([
    App\Http\Middleware\SetLocale::class
 ]);
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
-
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -93,6 +86,9 @@ $app->register(Unisharp\JWT\JWTServiceProvider::class);
 $app->register(Vluzrmos\Tinker\TinkerServiceProvider::class);
 $app->register(AlbertCht\Form\FormRequestServiceProvider::class);
 $app->register(Laravel\Socialite\SocialiteServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

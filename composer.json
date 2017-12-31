@@ -14,7 +14,9 @@
         "mlntn/lumen-artisan-serve": "^1.2",
         "vluzrmos/tinker": "dev-master",
         "albertcht/lumen-form-request": "^2.1",
-        "albertcht/lumen-helpers": "dev-master"
+        "albertcht/lumen-helpers": "dev-master",
+        "illuminate/mail": "^5.5",
+        "illuminate/notifications": "^5.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

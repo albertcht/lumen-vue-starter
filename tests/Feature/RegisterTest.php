@@ -11,7 +11,7 @@ class RegisterTest extends BaseTestCase
     use RefreshDatabase;
 
     /** @test */
-    public function register()
+    public function testRegister()
     {
         // invalid data
         $test = $this->post('/api/register', $data = [

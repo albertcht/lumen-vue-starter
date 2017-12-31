@@ -8,10 +8,16 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Contracts\Auth\CanResetPassword as ResetPasswordContract;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject, ResetPasswordContract
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable,
+        Authorizable,
+        CanResetPassword,
+        Notifiable;
 
     /**
      * The attributes that are mass assignable.

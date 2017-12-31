@@ -4,12 +4,12 @@ namespace App\Http\Controllers\API\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\sendResetLinkRequest;
 
 class ForgotPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
-
     /**
      * Create a new controller instance.
      *
@@ -17,7 +17,22 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        //
+    }
+
+    public function sendResetLinkEmail(sendResetLinkRequest $request)
+    {
+        $response = Password::broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        if ($response === Password::INVALID_USER) {
+            throw ValidationException::withMessages([
+                'email' => [trans($response)],
+            ]);
+        }
+
+        return $this->sendResetLinkResponse($response);
     }
 
     /**
@@ -29,17 +44,5 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkResponse($response)
     {
         return ['status' => trans($response)];
-    }
-
-    /**
-     * Get the response for a failed password reset link.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function sendResetLinkFailedResponse(Request $request, $response)
-    {
-        return response()->json(['email' => trans($response)], 400);
     }
 }

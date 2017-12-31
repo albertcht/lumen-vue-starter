@@ -14,7 +14,7 @@ class OAuthTest extends BaseTestCase
     use RefreshDatabase;
 
     /** @test */
-    public function redirectToProvider()
+    public function testRedirectToProvider()
     {
         $this->mockSocialite('github');
 
@@ -23,7 +23,7 @@ class OAuthTest extends BaseTestCase
     }
 
     /** @test */
-    public function createUserAndRedirectHomeWithToken()
+    public function testCreateUserAndRedirectHomeWithToken()
     {
         $this->mockSocialite('github', [
             'id' => '123',
@@ -52,7 +52,7 @@ class OAuthTest extends BaseTestCase
     }
 
     /** @test */
-    public function updateUserAndRedirectHomeWithToken()
+    public function testUpdateUserAndRedirectHomeWithToken()
     {
         $user = factory(User::class)->create(['email' => 'test@example.com']);
         $user->oauthProviders()->create([
@@ -79,7 +79,7 @@ class OAuthTest extends BaseTestCase
     }
 
     /** @test */
-    public function canNotCreateUserIfEmailIsTaken()
+    public function testCanNotCreateUserIfEmailIsTaken()
     {
         factory(User::class)->create(['email' => 'test@example.com']);
 

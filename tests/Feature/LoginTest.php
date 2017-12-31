@@ -20,7 +20,7 @@ class LoginTest extends BaseTestCase
     }
 
     /** @test */
-    public function login()
+    public function testLogin()
     {
         // invalid email format
         $this->post('/api/login', [
@@ -48,7 +48,7 @@ class LoginTest extends BaseTestCase
     }
 
     /** @test */
-    public function getUser()
+    public function testGetUser()
     {
         $this->actingAs($this->user)
             ->get('/api/user')
@@ -59,7 +59,7 @@ class LoginTest extends BaseTestCase
     }
 
     /** @test */
-    public function logout()
+    public function testLogout()
     {
         $this->actingAs($this->user)
             ->post('/api/logout')

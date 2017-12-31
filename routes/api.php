@@ -27,4 +27,9 @@ $router->group([], function () use ($router) {
     $router->post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
 });
 
+$router->group(['prefix' => 'password'], function () use ($router) {
+    $router->post('email', ['uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+    $router->post('reset', ['uses' => 'Auth\ResetPasswordController@reset']);
+});
+
 $router->get('translations/{locale}', ['uses' => 'TranslationController@show']);

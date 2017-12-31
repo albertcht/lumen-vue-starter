@@ -10,7 +10,7 @@ class LocaleTest extends BaseTestCase
     use RefreshDatabase;
 
     /** @test */
-    public function getTranslations()
+    public function testGetTranslations()
     {
         $this->get('/api/translations/en')
             ->assertSuccessful()
@@ -18,7 +18,7 @@ class LocaleTest extends BaseTestCase
     }
 
     /** @test */
-    public function setLocalFromHeader()
+    public function testSetLocalFromHeader()
     {
         $this->withHeaders(['Accept-Language' => 'zh-TW'])
             ->postJson('/api/login');
