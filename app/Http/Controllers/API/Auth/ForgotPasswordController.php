@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use App\Http\Requests\sendResetLinkRequest;
+use App\Http\Requests\Auth\sendResetLinkRequest;
 
 class ForgotPasswordController extends Controller
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use AlbertCht\Form\FormRequest;
 
-class sendResetLinkRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class sendResetLinkRequest extends FormRequest
     public function rules()
     {
         return [
+            'token' => 'required',
             'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
         ];
     }
 }
