@@ -33,7 +33,6 @@ axios.interceptors.response.use(response => {
   }
 
   return response
-
   }, error => {
   const { status } = error.response
 
