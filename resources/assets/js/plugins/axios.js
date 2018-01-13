@@ -22,7 +22,18 @@ axios.interceptors.request.use(request => {
 })
 
 // Response interceptor
-axios.interceptors.response.use(response => response, error => {
+axios.interceptors.response.use(response => {
+  const { authorization } = response.headers
+
+  if (authorization) {
+    store.dispatch('auth/saveToken', {
+        token: authorization.split(' ').pop(),
+        remember: false
+    })
+  }
+
+  return response
+  }, error => {
   const { status } = error.response
 
   if (status >= 500) {
