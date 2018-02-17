@@ -5,6 +5,7 @@ import App from '~/components/App'
 import i18n from '~/plugins/i18n'
 
 import '~/plugins'
+import '~/layouts'
 import '~/components'
 
 Vue.config.productionTip = false
