@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "045a5eba76ab16bc62b58c144646dfe6",
+    "hash": "59ec52aa677bb81da19aab9f8c8fa105",
     "content-hash": "9bba013a77138e94323e816e99613ea1",
     "packages": [
         {
@@ -3847,16 +3847,16 @@
         },
         {
             "name": "unisharp/laravel-jwt",
-            "version": "0.2.2",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-jwt.git",
-                "reference": "94d6021f75f86159a87c5da6749111352f1bac02"
+                "reference": "43275a9f3d8532aeb1ccfcb37eac529a16b03e1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-jwt/zipball/94d6021f75f86159a87c5da6749111352f1bac02",
-                "reference": "94d6021f75f86159a87c5da6749111352f1bac02",
+                "url": "https://api.github.com/repos/UniSharp/laravel-jwt/zipball/43275a9f3d8532aeb1ccfcb37eac529a16b03e1e",
+                "reference": "43275a9f3d8532aeb1ccfcb37eac529a16b03e1e",
                 "shasum": ""
             },
             "require": {
@@ -3900,7 +3900,7 @@
                 "reissue",
                 "token"
             ],
-            "time": "2017-12-30 09:25:20"
+            "time": "2018-02-05 03:46:07"
         },
         {
             "name": "vlucas/phpdotenv",

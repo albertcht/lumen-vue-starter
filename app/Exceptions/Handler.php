@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Debug\Exception\FlattenException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class Handler extends ExceptionHandler
@@ -24,6 +25,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
+        TokenBlacklistedException::class,
     ];
 
     /**
@@ -60,7 +62,9 @@ class Handler extends ExceptionHandler
         $isBadMethod = $e instanceof BadMethodCallException;
         $status = 400;
 
-        if ($isFatal || $isBadMethod) {
+        if ($e instanceof TokenBlacklistedException) {
+            $status = 401;
+        } elseif ($isFatal || $isBadMethod) {
             $status = 500;
         } elseif (method_exists($e, 'getStatusCode')) {
             $status = $e->getStatusCode();
