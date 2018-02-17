@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use App\Http\Requests\Auth\sendResetLinkRequest;
+use App\Http\Requests\Auth\SendResetLinkRequest;
 
 class ForgotPasswordController extends Controller
 {
@@ -20,7 +20,7 @@ class ForgotPasswordController extends Controller
         //
     }
 
-    public function sendResetLinkEmail(sendResetLinkRequest $request)
+    public function sendResetLinkEmail(SendResetLinkRequest $request)
     {
         $response = Password::broker()->sendResetLink(
             $request->only('email')
