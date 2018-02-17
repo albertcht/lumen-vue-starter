@@ -17,8 +17,6 @@ $router->group(['prefix' => 'oauth'], function () use ($router) {
     $router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
 });
 
-$router->get('{driver}/callback', ['as' => 'oauth.callback', 'uses' => 'Auth\OAuthController@handleProviderCallback']);
-
 $router->get('{path:.*}', function () {
     return view('index');
 });

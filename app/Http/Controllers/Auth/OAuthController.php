@@ -17,7 +17,7 @@ class OAuthController extends Controller
     public function __construct()
     {
         config([
-            'services.github.redirect' => route('oauth.callback', 'github'),
+            'services.github.redirect' => route('oauth.callback', ['driver' => 'github']),
         ]);
     }
 
