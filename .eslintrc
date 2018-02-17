@@ -1,0 +1,6 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "plugin:vue-libs/recommended"
+  ]
+}
