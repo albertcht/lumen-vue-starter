@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '~/store'
 import router from '~/router'
 import swal from 'sweetalert2'
-import { i18n } from '~/plugins/i18n'
+import i18n from '~/plugins/i18n'
 
 // Request interceptor
 axios.interceptors.request.use(request => {
@@ -13,7 +13,7 @@ axios.interceptors.request.use(request => {
 
   const locale = store.getters['lang/locale']
   if (locale) {
-    axios.defaults.headers.common['Accept-Language'] = locale
+    request.headers.common['Accept-Language'] = locale
   }
 
   // request.headers['X-Socket-Id'] = Echo.socketId()
@@ -55,8 +55,7 @@ axios.interceptors.response.use(response => {
       reverseButtons: true,
       confirmButtonText: i18n.t('ok'),
       cancelButtonText: i18n.t('cancel')
-    })
-    .then(async () => {
+    }).then(async () => {
       await store.dispatch('auth/logout')
 
       router.push({ name: 'login' })

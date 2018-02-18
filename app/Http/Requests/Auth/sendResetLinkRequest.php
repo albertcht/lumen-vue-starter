@@ -4,7 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use AlbertCht\Form\FormRequest;
 
-class sendResetLinkRequest extends FormRequest
+class SendResetLinkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

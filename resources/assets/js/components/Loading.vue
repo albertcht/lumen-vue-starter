@@ -4,12 +4,11 @@
     height: height,
     opacity: show ? 1 : 0,
     'background-color': canSuccess ? color : failedColor
-  }"></div>
+  }"/>
 </template>
 
 <script>
 // https://github.com/nuxt/nuxt.js/blob/master/lib/app/components/nuxt-loading.vue
-import Vue from 'vue'
 
 export default {
   data: () => ({
@@ -70,7 +69,7 @@ export default {
       this._timer = null
       setTimeout(() => {
         this.show = false
-        Vue.nextTick(() => {
+        this.$nextTick(() => {
           setTimeout(() => {
             this.percent = 0
           }, 200)

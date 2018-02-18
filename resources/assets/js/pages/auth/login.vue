@@ -9,7 +9,7 @@
             <div class="col-md-7">
               <input v-model="form.email" type="email" name="email" class="form-control"
                 :class="{ 'is-invalid': form.errors.has('email') }">
-              <has-error :form="form" field="email"></has-error>
+              <has-error :form="form" field="email"/>
             </div>
           </div>
 
@@ -19,19 +19,21 @@
             <div class="col-md-7">
               <input v-model="form.password" type="password" name="password" class="form-control"
                 :class="{ 'is-invalid': form.errors.has('password') }">
-              <has-error :form="form" field="password"></has-error>
+              <has-error :form="form" field="password"/>
             </div>
           </div>
 
           <!-- Remember Me -->
           <div class="form-group row">
             <div class="col-md-3"></div>
-            <div class="col-md-7">
-              <router-link :to="{ name: 'password.request' }" class="float-right small">
+            <div class="col-md-7 d-flex">
+              <checkbox v-model="remember" name="remember">
+                {{ $t('remember_me') }}
+              </checkbox>
+
+              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
                 {{ $t('forgot_password') }}
               </router-link>
-
-              <checkbox v-model="remember">{{ $t('remember_me') }}</checkbox>
             </div>
           </div>
 
@@ -43,10 +45,7 @@
               </v-button>
 
               <!-- GitHub Login Button -->
-              <a v-if="githubAuth" href="/oauth/github" class="btn btn-dark ml-auto">
-                {{ $t('login_with') }}
-                <fa :icon="['fab', 'github']"/>
-              </a>
+              <login-with-github/>
             </div>
           </div>
         </form>
@@ -57,8 +56,15 @@
 
 <script>
 import Form from 'vform'
+import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
+  middleware: 'guest',
+
+  components: {
+    LoginWithGithub
+  },
+
   metaInfo () {
     return { title: this.$t('login') }
   },
@@ -88,10 +94,6 @@ export default {
       // Redirect home.
       this.$router.push({ name: 'home' })
     }
-  },
-
-  computed: {
-    githubAuth: () => window.config.githubAuth
   }
 }
 </script>

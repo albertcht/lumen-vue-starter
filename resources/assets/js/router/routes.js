@@ -1,41 +1,28 @@
+const Welcome = () => import('~/pages/welcome')
+const Login = () => import('~/pages/auth/login')
+const Register = () => import('~/pages/auth/register')
+const PasswordEmail = () => import('~/pages/auth/password/email')
+const PasswordReset = () => import('~/pages/auth/password/reset')
+
+const Home = () => import('~/pages/home')
+const Settings = () => import('~/pages/settings/index')
+const SettingsProfile = () => import('~/pages/settings/profile')
+const SettingsPassword = () => import('~/pages/settings/password')
+
 export default [
-  { path: '/', name: 'welcome', component: require('~/pages/welcome') },
+  { path: '/', name: 'welcome', component: Welcome },
 
-  // Authenticated routes.
-  ...middleware('auth', [
-    { path: '/home', name: 'home', component: require('~/pages/home') },
-    { path: '/settings', component: require('~/pages/settings/index'), children: [
-      { path: '', redirect: { name: 'settings.profile' }},
-      { path: 'profile', name: 'settings.profile', component: require('~/pages/settings/profile') },
-      { path: 'password', name: 'settings.password', component: require('~/pages/settings/password') }
-    ] }
+  { path: '/login', name: 'login', component: Login },
+  { path: '/register', name: 'register', component: Register },
+  { path: '/password/reset', name: 'password.request', component: PasswordEmail },
+  { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
-    // ...middleware('admin', [
-    //   { path: '/admin', name: 'admin', component: require('~/pages/admin') }
-    // ])
-    // { path: '/example', name: 'example', component: require('~/pages/example'), middleware: ['admin'] },
-  ]),
+  { path: '/home', name: 'home', component: Home },
+  { path: '/settings', component: Settings, children: [
+    { path: '', redirect: { name: 'settings.profile' }},
+    { path: 'profile', name: 'settings.profile', component: SettingsProfile },
+    { path: 'password', name: 'settings.password', component: SettingsPassword }
+  ] },
 
-  // Guest routes.
-  ...middleware('guest', [
-    { path: '/login', name: 'login', component: require('~/pages/auth/login') },
-    { path: '/register', name: 'register', component: require('~/pages/auth/register') },
-    { path: '/password/reset', name: 'password.request', component: require('~/pages/auth/password/email') },
-    { path: '/password/reset/:token', name: 'password.reset', component: require('~/pages/auth/password/reset') }
-  ]),
-
-  { path: '*', component: require('~/pages/errors/404.vue') }
+  { path: '*', component: require('~/pages/errors/404') }
 ]
-
-/**
- * @param  {String|Function} middleware
- * @param  {Array} routes
- * @return {Array}
- */
-function middleware (middleware, routes) {
-  routes.forEach(route =>
-    (route.middleware || (route.middleware = [])).unshift(middleware)
-  )
-
-  return routes
-}

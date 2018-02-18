@@ -15,7 +15,7 @@
 
     <div class="col-md-9">
       <transition name="fade" mode="out-in">
-        <router-view></router-view>
+        <router-view/>
       </transition>
     </div>
   </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  loading: false,
+  middleware: 'auth',
 
   computed: {
     tabs () {

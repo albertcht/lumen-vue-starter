@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\CanResetPassword as ResetPasswordContract;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject, ResetPasswordContract
 {
@@ -64,6 +65,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function oauthProviders()
     {
         return $this->hasMany(OAuthProvider::class);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
     /**

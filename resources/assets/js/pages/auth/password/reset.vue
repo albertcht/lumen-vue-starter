@@ -3,15 +3,15 @@
     <div class="col-lg-8 m-auto">
       <card :title="$t('reset_password')">
         <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
-          <alert-success :form="form" :message="status"></alert-success>
+          <alert-success :form="form" :message="status"/>
 
           <!-- Email -->
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
             <div class="col-md-7">
               <input v-model="form.email" type="email" name="email" class="form-control"
-                :class="{ 'is-invalid': form.errors.has('email') }">
-              <has-error :form="form" field="email"></has-error>
+                :class="{ 'is-invalid': form.errors.has('email') }" readonly>
+              <has-error :form="form" field="email"/>
             </div>
           </div>
 
@@ -21,7 +21,7 @@
             <div class="col-md-7">
               <input v-model="form.password" type="password" name="password" class="form-control"
                 :class="{ 'is-invalid': form.errors.has('password') }">
-              <has-error :form="form" field="password"></has-error>
+              <has-error :form="form" field="password"/>
             </div>
           </div>
 
@@ -31,14 +31,16 @@
             <div class="col-md-7">
               <input v-model="form.password_confirmation" type="password" name="password_confirmation" class="form-control"
                 :class="{ 'is-invalid': form.errors.has('password_confirmation') }">
-              <has-error :form="form" field="password_confirmation"></has-error>
+              <has-error :form="form" field="password_confirmation"/>
             </div>
           </div>
 
           <!-- Submit Button -->
           <div class="form-group row">
             <div class="col-md-9 ml-md-auto">
-              <v-button :loading="form.busy">{{ $t('reset_password') }}</v-button>
+              <v-button :loading="form.busy">
+                {{ $t('reset_password') }}
+              </v-button>
             </div>
           </div>
         </form>
@@ -51,6 +53,8 @@
 import Form from 'vform'
 
 export default {
+  middleware: 'guest',
+
   metaInfo () {
     return { title: this.$t('reset_password') }
   },
@@ -65,10 +69,13 @@ export default {
     })
   }),
 
+  created () {
+    this.form.email = this.$route.query.email
+    this.form.token = this.$route.params.token
+  },
+
   methods: {
     async reset () {
-      this.form.token = this.$route.params.token
-
       const { data } = await this.form.post('/api/password/reset')
 
       this.status = data.status

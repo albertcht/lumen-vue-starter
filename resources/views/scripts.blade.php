@@ -4,7 +4,6 @@ $config = [
     'appName' => config('app.name'),
     'locale' => $locale = config('app.locale'),
     'locales' => config('app.locales'),
-    'translations' => json_decode(file_get_contents(resource_path("lang/{$locale}.json")), true),
     'githubAuth' => config('services.github.client_id'),
 ];
 @endphp

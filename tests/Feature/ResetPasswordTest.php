@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 use AlbertCht\Lumen\Testing\Concerns\RefreshDatabase;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Mail;
