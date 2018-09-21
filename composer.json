@@ -6,24 +6,25 @@
     "type": "project",
     "require": {
         "php": ">=7.1",
-        "laravel/lumen-framework": "5.5.*",
+        "laravel/lumen-framework": "5.6.*",
         "vlucas/phpdotenv": "~2.2",
         "laravel/socialite": "^3.0",
         "guzzlehttp/guzzle": "^6.3",
-        "unisharp/laravel-jwt": "^0.2.2",
+        "unisharp/laravel-jwt": "^0.2.6",
         "mlntn/lumen-artisan-serve": "^1.2",
         "vluzrmos/tinker": "dev-master",
         "albertcht/lumen-form-request": "^2.3",
-        "albertcht/lumen-helpers": "^0.2",
-        "illuminate/mail": "^5.5",
-        "illuminate/notifications": "^5.5"
+        "albertcht/lumen-helpers": "dev-master",
+        "illuminate/mail": "^5.6",
+        "illuminate/notifications": "^5.6",
+        "ramsey/uuid": "^3.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0",
         "codedungeon/phpunit-result-printer": "^0.4.4",
-        "albertcht/lumen-testing": "^0.4.0"
+        "albertcht/lumen-testing": "^0.7"
     },
     "autoload": {
         "psr-4": {
