@@ -13,7 +13,7 @@
 
 ## Features
 
-- Lumen 5.5
+- Lumen 5.6
 - Helpers in Laravel style
 - Testing in Laravel style
 - Tinker command
