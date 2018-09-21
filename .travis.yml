@@ -13,3 +13,5 @@ install:
   - travis_retry composer install --no-suggest --prefer-dist -n -o
 
 script: vendor/bin/phpunit
+
+after_script: cat storage/logs/lumen.log
