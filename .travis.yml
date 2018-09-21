@@ -12,7 +12,9 @@ before_script:
 install:
   - travis_retry composer install --no-suggest --prefer-dist -n -o
 
-script: vendor/bin/phpunit
+script:
+  - cp .env.example .env
+  - vendor/bin/phpunit
 
 after_script:
   - ls -alh storage/logs
