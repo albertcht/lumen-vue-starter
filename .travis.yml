@@ -14,4 +14,7 @@ install:
 
 script: vendor/bin/phpunit
 
-after_script: cat storage/logs/lumen.log
+after_script:
+  - ls -alh storage/logs
+  - cat storage/logs/lumen.log
+  - echo 'DONE!'
